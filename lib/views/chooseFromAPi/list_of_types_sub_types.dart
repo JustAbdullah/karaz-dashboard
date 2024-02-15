@@ -44,6 +44,10 @@ class ListOfSubTypes extends StatelessWidget {
                                   homeController.idTheSubType = snapshot
                                       .data['data'][i]['sub_type_id']
                                       .toString();
+
+                                  homeController.IdSubType = snapshot
+                                      .data['data'][i]['sub_type_id']
+                                      .toString();
                                   homeController.showTheListOfSubType.value =
                                       false;
                                 },

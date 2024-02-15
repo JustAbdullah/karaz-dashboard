@@ -44,6 +44,14 @@ class ListOfMainTypes extends StatelessWidget {
                                   homeController.idTheMainType = snapshot
                                       .data['data'][i]['services_main_id']
                                       .toString();
+
+                                  homeController.idMainSubTypeEdit = snapshot
+                                      .data['data'][i]['services_main_id']
+                                      .toString();
+
+                                  homeController.idSerivceJobEdit = snapshot
+                                      .data['data'][i]['services_main_id']
+                                      .toString();
                                   homeController.showTheListOfMainType.value =
                                       false;
                                 },

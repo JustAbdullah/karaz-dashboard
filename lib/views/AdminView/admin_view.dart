@@ -275,6 +275,12 @@ class ViewAdmin extends StatelessWidget {
                                                                           InkWell(
                                                                               onTap: () {
                                                                                 homeController.ofIdMainTypeDeleteOrEdit = snapshot.data['data'][i]['admin_id'].toString();
+                                                                                ///////////////
+
+                                                                                homeController.idAdminEdit = snapshot.data['data'][i]['admin_id'].toString();
+                                                                                homeController.nameAdminEdit = snapshot.data['data'][i]['admin_name'].toString();
+                                                                                homeController.passwordAdminEdit = snapshot.data['data'][i]['admin_password'].toString();
+                                                                                homeController.typeOfAccessEditAdmin = int.parse(snapshot.data['data'][i]['admin_type'].toString());
                                                                                 homeController.showMore.value = true;
                                                                               },
                                                                               child: Container(
@@ -459,6 +465,7 @@ class ViewAdmin extends StatelessWidget {
                                 theRight: 0,
                                 child: InkWell(
                                   onTap: () {
+                                    homeController.isChooseEditAdmin = 0;
                                     Get.to(AdminAdd());
                                   },
                                   child: Container(
@@ -486,6 +493,133 @@ class ViewAdmin extends StatelessWidget {
               ),
             ),
           ),
+          GetX<HomeController>(
+              builder: (controller) => Visibility(
+                  visible: controller.showMore.value,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    color: Colors.black38,
+                  ))),
+          GetX<HomeController>(
+              builder: (controller) => Visibility(
+                  visible: controller.showMore.value,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    color: Colors.black38,
+                  ))),
+          GetX<HomeController>(
+              builder: (controller) => Visibility(
+                  visible: controller.showMore.value,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      width: 100.w,
+                      height: 150.h,
+                      color: Colors.white,
+                      child: SingleChildScrollView(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              PaddingCustom(
+                                theTop: 00,
+                                theRight: 00,
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.showMore.value = false;
+                                  },
+                                  child: Container(
+                                      alignment: Alignment.center,
+                                      width: 17.w,
+                                      height: 25.h,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.redColor,
+                                        borderRadius: BorderRadius.circular(0),
+                                      ),
+                                      child: Text(
+                                        "X",
+                                        style: TextStyle(
+                                          color: AppColors.whiteColor,
+                                          fontFamily: AppTextStyles.Almarai,
+                                          fontSize: 5.sp,
+                                        ),
+                                      )),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: PaddingCustom(
+                                  theTop: 30,
+                                  theRight: 00,
+                                  child: TextCustom(
+                                      height: 1.5,
+                                      theText: "إدارة وتحكم شاملة لهذا القسم",
+                                      fontSizeWidth: 4.sp,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: AppTextStyles.Almarai,
+                                      fontColor: AppColors.balckColorTypeThree),
+                                ),
+                              ),
+                              PaddingCustom(
+                                theTop: 40,
+                                theRight: 0,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {},
+                                      child: Container(
+                                          alignment: Alignment.center,
+                                          width: 30.w,
+                                          height: 35.h,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.redColor,
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                          ),
+                                          child: Text(
+                                            "حذف",
+                                            style: TextStyle(
+                                              color: AppColors.whiteColor,
+                                              fontFamily: AppTextStyles.Almarai,
+                                              fontSize: 5.sp,
+                                            ),
+                                          )),
+                                    ),
+                                    InkWell(
+                                        onTap: () {
+                                          controller.isChooseEditAdmin = 1;
+                                          Get.to(AdminAdd());
+                                        },
+                                        child: Container(
+                                            alignment: Alignment.center,
+                                            width: 30.w,
+                                            height: 35.h,
+                                            decoration: BoxDecoration(
+                                              color: AppColors.yellowColor,
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                            ),
+                                            child: Text(
+                                              "تعديل",
+                                              style: TextStyle(
+                                                color: AppColors.blackColor,
+                                                fontFamily:
+                                                    AppTextStyles.Almarai,
+                                                fontSize: 5.sp,
+                                              ),
+                                            ))),
+                                  ],
+                                ),
+                              ),
+                            ]),
+                      ),
+                    ),
+                  ))),
         ],
       ), ///////////////End OF Menu And  Page,,,,,,,,,,,,,,,..........
     ));

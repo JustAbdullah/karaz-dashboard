@@ -90,9 +90,13 @@ class _AddMainTypeScreenDeskTopState extends State<AddMainTypeScreenDeskTop> {
                                     child: TextFormField(
                                       onChanged: (value) {
                                         homeController.nameOFTypeMain = value;
+                                        homeController.nameArEditMainType =
+                                            value;
                                       },
                                       onSaved: (newValue) {
                                         homeController.nameOFTypeMain =
+                                            newValue.toString();
+                                        homeController.nameArEditMainType =
                                             newValue.toString();
                                       },
                                       controller: homeController.controllerOne,
@@ -138,9 +142,13 @@ class _AddMainTypeScreenDeskTopState extends State<AddMainTypeScreenDeskTop> {
                                       onChanged: (value) {
                                         homeController.nameEnglishTypeMain =
                                             value;
+                                        homeController.nameEnEditMainType =
+                                            value;
                                       },
                                       onSaved: (newValue) {
                                         homeController.nameEnglishTypeMain =
+                                            newValue.toString();
+                                        homeController.nameEnEditMainType =
                                             newValue.toString();
                                       },
                                       keyboardType: TextInputType.text,
@@ -225,12 +233,26 @@ class _AddMainTypeScreenDeskTopState extends State<AddMainTypeScreenDeskTop> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    homeController.addNewMainType(
-                                        homeController.nameOFTypeMain
-                                            .toString(),
-                                        homeController.nameEnglishTypeMain
-                                            .toString(),
-                                        homeController.urlImageOne.toString());
+                                    if (homeController.isChooseEditMainType ==
+                                        1) {
+                                      homeController.editMainType(
+                                          homeController.idMainTypeEdit
+                                              .toString(),
+                                          homeController.nameArEditMainType
+                                              .toString(),
+                                          homeController.nameEnEditMainType
+                                              .toString(),
+                                          homeController.iconEditMainType
+                                              .toString());
+                                    } else {
+                                      homeController.addNewMainType(
+                                          homeController.nameOFTypeMain
+                                              .toString(),
+                                          homeController.nameEnglishTypeMain
+                                              .toString(),
+                                          homeController.urlImageOne
+                                              .toString());
+                                    }
                                   },
                                   child: ContainerCustomApi(
                                     colorContainer: AppColors.yellowColor,

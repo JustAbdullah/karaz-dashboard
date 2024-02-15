@@ -54,7 +54,8 @@ class _AddTypesOFSubTypeScreenDeskTopState
                               alignment: Alignment.topCenter,
                               child: TextCustom(
                                   height: 1.5.h,
-                                  theText: "صفحة إضافة تفرعات الخدمة الفرعية ",
+                                  theText:
+                                      "صفحة إضافة-تعديل تفرعات الخدمة الفرعية ",
                                   fontSizeWidth: 7.sp,
                                   fontFamily: AppTextStyles.Almarai,
                                   fontColor: AppColors.blackColor),
@@ -67,7 +68,7 @@ class _AddTypesOFSubTypeScreenDeskTopState
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 50.w),
                                 child: Text(
-                                  "لطفًا قم بإدخال البيانات لإضافة التفرعات الخدمات  في كرز",
+                                  "لطفًا قم بإدخال البيانات لإضافة-تعديل التفرعات الخدمات  في كرز",
                                   style: TextStyle(
                                       height: 1.5.h,
                                       fontSize: 5.sp,
@@ -93,9 +94,13 @@ class _AddTypesOFSubTypeScreenDeskTopState
                                       onChanged: (value) {
                                         homeController.nameOFTypeOfSubType =
                                             value;
+                                        homeController.nameTypeSubTypeAr =
+                                            value.toString();
                                       },
                                       onSaved: (newValue) {
                                         homeController.nameOFTypeOfSubType =
+                                            newValue.toString();
+                                        homeController.nameTypeSubTypeAr =
                                             newValue.toString();
                                       },
                                       controller: homeController.controllerOne,
@@ -141,9 +146,13 @@ class _AddTypesOFSubTypeScreenDeskTopState
                                       onChanged: (value) {
                                         homeController.nameOFTypeOfSubTypeEn =
                                             value;
+                                        homeController.nameTypeSubTypeEn =
+                                            value;
                                       },
                                       onSaved: (newValue) {
                                         homeController.nameOFTypeOfSubTypeEn =
+                                            newValue.toString();
+                                        homeController.nameTypeSubTypeEn =
                                             newValue.toString();
                                       },
                                       keyboardType: TextInputType.text,
@@ -189,10 +198,14 @@ class _AddTypesOFSubTypeScreenDeskTopState
                                       onChanged: (value) {
                                         homeController
                                             .DescriptionOFTypeOfSubType = value;
+                                        homeController.AboutTypeSubTypeAr =
+                                            value;
                                       },
                                       onSaved: (newValue) {
                                         homeController
                                                 .DescriptionOFTypeOfSubType =
+                                            newValue.toString();
+                                        homeController.AboutTypeSubTypeAr =
                                             newValue.toString();
                                       },
                                       keyboardType: TextInputType.text,
@@ -238,10 +251,14 @@ class _AddTypesOFSubTypeScreenDeskTopState
                                         homeController
                                                 .DescriptionOFTypeOfSubTypeEn =
                                             value;
+                                        homeController.AboutTypeSubTypeEn =
+                                            value.toString();
                                       },
                                       onSaved: (newValue) {
                                         homeController
                                                 .DescriptionOFTypeOfSubTypeEn =
+                                            newValue.toString();
+                                        homeController.AboutTypeSubTypeEn =
                                             newValue.toString();
                                       },
                                       keyboardType: TextInputType.text,
@@ -286,9 +303,13 @@ class _AddTypesOFSubTypeScreenDeskTopState
                                       onChanged: (value) {
                                         homeController.PriceOFTypeOfSubType =
                                             value;
+                                        homeController.PriceTypeOfSubType =
+                                            value;
                                       },
                                       onSaved: (newValue) {
                                         homeController.PriceOFTypeOfSubType =
+                                            newValue.toString();
+                                        homeController.PriceTypeOfSubType =
                                             newValue.toString();
                                       },
                                       keyboardType: TextInputType.text,
@@ -365,20 +386,34 @@ class _AddTypesOFSubTypeScreenDeskTopState
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    homeController.addNewTpyeOfSubType(
-                                      homeController.idTheSubType.toString(),
-                                      homeController.nameOFTypeOfSubType
-                                          .toString(),
-                                      homeController.nameOFTypeOfSubTypeEn
-                                          .toString(),
-                                      homeController.DescriptionOFTypeOfSubType
-                                          .toString(),
-                                      homeController
-                                              .DescriptionOFTypeOfSubTypeEn
-                                          .toString(),
-                                      homeController.PriceOFTypeOfSubType
-                                          .toString(),
-                                    );
+                                    if (homeController
+                                            .isChooseEditTypeSubType ==
+                                        1) {
+                                      homeController.editTypeSubType(
+                                          homeController.idTypeOFSubType,
+                                          homeController.IdSubType,
+                                          homeController.nameTypeSubTypeAr,
+                                          homeController.nameTypeSubTypeEn,
+                                          homeController.AboutTypeSubTypeAr,
+                                          homeController.AboutTypeSubTypeEn,
+                                          homeController.PriceTypeOfSubType);
+                                    } else {
+                                      homeController.addNewTpyeOfSubType(
+                                        homeController.idTheSubType.toString(),
+                                        homeController.nameOFTypeOfSubType
+                                            .toString(),
+                                        homeController.nameOFTypeOfSubTypeEn
+                                            .toString(),
+                                        homeController
+                                                .DescriptionOFTypeOfSubType
+                                            .toString(),
+                                        homeController
+                                                .DescriptionOFTypeOfSubTypeEn
+                                            .toString(),
+                                        homeController.PriceOFTypeOfSubType
+                                            .toString(),
+                                      );
+                                    }
                                   },
                                   child: ContainerCustomApi(
                                     colorContainer: AppColors.yellowColor,
@@ -388,7 +423,7 @@ class _AddTypesOFSubTypeScreenDeskTopState
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 47.h),
                                       child: Text(
-                                        "إضافة التفرع الان",
+                                        "إضافة-تعديل التفرع الان",
                                         style: TextStyle(
                                           color: AppColors.balckColorTypeThree,
                                           fontFamily: AppTextStyles.Almarai,
@@ -491,7 +526,7 @@ class _AddTypesOFSubTypeScreenDeskTopState
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  "انتظر قليلاً يتم إضافة البيانات",
+                                  "انتظر قليلاً يتم إضافة-تعديل البيانات",
                                   style: TextStyle(
                                     color: AppColors.whiteColor,
                                     fontFamily: AppTextStyles.Almarai,
@@ -532,7 +567,7 @@ class _AddTypesOFSubTypeScreenDeskTopState
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 20.w),
                                     child: Text(
-                                      "تم إضافة البيانات  بنجاح ",
+                                      "تم إضافة-تعديل البيانات  بنجاح ",
                                       style: TextStyle(
                                           height: 1.7.h,
                                           color: Colors.greenAccent,

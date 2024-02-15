@@ -232,7 +232,7 @@ class Menu extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        //    controller.GoToComm();
+                        controller.GoToServicesMan();
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -259,7 +259,7 @@ class Menu extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        //    controller.GoToAct();
+                        controller.GoToOrders();
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -272,6 +272,60 @@ class Menu extends StatelessWidget {
                             borderRadius: BorderRadius.circular(3)),
                         child: Text(
                           "الطلبيات",
+                          style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontFamily: AppTextStyles.Almarai,
+                            fontSize: 18,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        controller.GoToWallte();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 37.w,
+                        height: 35.h,
+                        decoration: BoxDecoration(
+                            color: controller.countTheMenu.value == 10
+                                ? AppColors.theAppColorBlueWhite
+                                : Color(0xFF171821),
+                            borderRadius: BorderRadius.circular(3)),
+                        child: Text(
+                          "المحفظة",
+                          style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontFamily: AppTextStyles.Almarai,
+                            fontSize: 18,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        //    controller.GoToAct();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 37.w,
+                        height: 35.h,
+                        decoration: BoxDecoration(
+                            color: controller.countTheMenu.value == 11
+                                ? AppColors.theAppColorBlueWhite
+                                : Color(0xFF171821),
+                            borderRadius: BorderRadius.circular(3)),
+                        child: Text(
+                          "إشعارات-الفني",
                           style: TextStyle(
                             color: AppColors.whiteColor,
                             fontFamily: AppTextStyles.Almarai,

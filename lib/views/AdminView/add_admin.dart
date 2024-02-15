@@ -49,7 +49,7 @@ class _AdminAddState extends State<AdminAdd> {
                           alignment: Alignment.topCenter,
                           child: TextCustom(
                               height: 1.5.h,
-                              theText: "صفحةإضافة مسؤول في لوحة التحكم",
+                              theText: "صفحةإضافة-تعديل مسؤول في لوحة التحكم",
                               fontSizeWidth: 7.sp,
                               fontFamily: AppTextStyles.Almarai,
                               fontColor: AppColors.blackColor),
@@ -62,7 +62,7 @@ class _AdminAddState extends State<AdminAdd> {
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 50.w),
                             child: Text(
-                              "لطفا قم بإدخال البيانات التالية لأضافة المسؤول في لوحة التحكم  ",
+                              "لطفا قم بإدخال البيانات التالية لأضافة-تعديل المسؤول في لوحة التحكم  ",
                               style: TextStyle(
                                   height: 1.5.h,
                                   fontSize: 5.sp,
@@ -87,9 +87,12 @@ class _AdminAddState extends State<AdminAdd> {
                                 child: TextFormField(
                                   onChanged: (value) {
                                     homeController.nameOfNewAdmin = value;
+                                    homeController.nameAdminEdit = value;
                                   },
                                   onSaved: (newValue) {
                                     homeController.nameOfNewAdmin =
+                                        newValue.toString();
+                                    homeController.nameAdminEdit =
                                         newValue.toString();
                                   },
                                   controller: homeController.controllerOne,
@@ -134,9 +137,12 @@ class _AdminAddState extends State<AdminAdd> {
                                   controller: homeController.controllerTwo,
                                   onChanged: (value) {
                                     homeController.passwordOFNewAdmin = value;
+                                    homeController.passwordAdminEdit = value;
                                   },
                                   onSaved: (newValue) {
                                     homeController.passwordOFNewAdmin =
+                                        newValue.toString();
+                                    homeController.passwordAdminEdit =
                                         newValue.toString();
                                   },
                                   keyboardType: TextInputType.text,
@@ -187,6 +193,8 @@ class _AdminAddState extends State<AdminAdd> {
                                     InkWell(
                                       onTap: () {
                                         controller.typeOFAdmin.value = 1;
+
+                                        controller.typeOfAccessEditAdmin = 1;
                                       },
                                       child: ContainerCustomApi(
                                         colorContainer:
@@ -215,6 +223,7 @@ class _AdminAddState extends State<AdminAdd> {
                                     InkWell(
                                       onTap: () {
                                         controller.typeOFAdmin.value = 2;
+                                        controller.typeOfAccessEditAdmin = 2;
                                       },
                                       child: ContainerCustomApi(
                                         colorContainer:
@@ -248,12 +257,22 @@ class _AdminAddState extends State<AdminAdd> {
                           children: [
                             InkWell(
                               onTap: () {
-                                homeController.AddAdmin(
-                                    homeController.nameOfNewAdmin.toString(),
-                                    homeController.passwordOFNewAdmin
-                                        .toString(),
-                                    homeController.typeOFAdmin.value);
-                                homeController.isAddData.value = true;
+                                if (homeController.isChooseEditAdmin == 1) {
+                                  homeController.editAdmin(
+                                      homeController.idAdminEdit.toString(),
+                                      homeController.nameAdminEdit.toString(),
+                                      homeController.passwordAdminEdit
+                                          .toString(),
+                                      homeController.typeOfAccessEditAdmin
+                                          .toString());
+                                } else {
+                                  homeController.AddAdmin(
+                                      homeController.nameOfNewAdmin.toString(),
+                                      homeController.passwordOFNewAdmin
+                                          .toString(),
+                                      homeController.typeOFAdmin.value);
+                                  homeController.isAddData.value = true;
+                                }
                               },
                               child: ContainerCustomApi(
                                 colorContainer: AppColors.yellowColor,

@@ -1,6 +1,7 @@
 //import 'package:http/http.dart' as http;
 
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,11 @@ import 'dart:io';
 
 import '../views/Notice/notice_view.dart';
 import '../views/Notifications/notifications.dart';
+import '../views/OrdersView/orders_view.dart';
+import '../views/ServicesMan/view_services_man.dart';
 import '../views/TypesOfSubTypes/view_type_sub_types.dart';
 import '../views/UsersScreen/view_users.dart';
+import '../views/WalletView/view_wallte.dart';
 
 class HomeController extends GetxController {
   final crud = Crud();
@@ -126,6 +130,21 @@ class HomeController extends GetxController {
     countTheMenu.value = 7;
   }
 
+  GoToServicesMan() {
+    Get.to(ViewServicesMan());
+    countTheMenu.value = 8;
+  }
+
+  GoToOrders() {
+    Get.to(OrdersView());
+    countTheMenu.value = 9;
+  }
+
+  GoToWallte() {
+    Get.to(ViewWallteSericesMan());
+    countTheMenu.value = 10;
+  }
+
   RxBool showMore = false.obs;
 
 ///////Send Notifiction................////////////
@@ -143,7 +162,8 @@ class HomeController extends GetxController {
     var url = Uri.parse('https://fcm.googleapis.com/fcm/send');
 
     var body = {
-      "to": "/topics/all",
+      "to":
+          "eLVgyyCnSimxrOL5H8j16s:APA91bEM0Rlexy5yL4A0SWI_ffP-JTCOYS6lcgHDS32vFIujD2NBLkgAqDg_jncEbrVZJ-wjkXW7V7gHyehmzY0HaydBm5F4eF-FyhBWqp-ztXU3SO1nSqH1QnFJuD6O8hT6iq-XWYwu",
       "notification": {
         "title": title,
         "body": thebody,
@@ -215,6 +235,8 @@ class HomeController extends GetxController {
           addImageWork.value = true;
           urlImageOne = value;
           loadingImage.value = false;
+          iconEditMainType = value;
+          iconEditSubType = value;
         });
       });
     }
@@ -349,7 +371,6 @@ class HomeController extends GetxController {
   } //////////// Tpee Of Sub Types............/
 
   String ofIdTypeSubTypeDeleteOrEdit = "";
-  int isChooseEditTypeSubType = 0;
   deleteTypeSubType(String idOFTypeSubType) async {
     var response = await crud.postRequest(AppLinksApi.deleteTypeOfSub,
         {"type_sub_id": idOFTypeSubType.toString()});
@@ -409,6 +430,213 @@ class HomeController extends GetxController {
     var response = await crud.postRequest(AppLinksApi.addNotice, {
       'notice_body': theNoticeBody.toString(),
       'add_by': idOfAdmin.value.toString(),
+    });
+
+    return response;
+  }
+
+  /////////////////////////////.............Services Man....................../////////////////////
+  getDataServicesMan() async {
+    var response = await crud.postRequest(AppLinksApi.getDataSerivcesMan, {});
+
+    return response;
+  }
+
+  String nameOfServiceMan = "";
+  String idPhoto = "";
+  String phoneNumberServiceMan = "";
+
+  addSeriveMan(
+      String name, String idPhoto, String phoneNumber, String idType) async {
+    Random random = new Random();
+    var randomNumber;
+    randomNumber = random.nextInt(100000);
+    addToDataBase.value = true;
+    var response = await crud.postRequest(AppLinksApi.addDataSerivcesMan, {
+      "name": name.toString(),
+      "phone": phoneNumber.toString(),
+      "id_photo": idPhoto.toString(),
+      "password": randomNumber.toString(),
+      "service_type": idType.toString(),
+    });
+    Future.delayed(const Duration(seconds: 2), () async {
+      addToDataBase.value = false;
+      isAddData.value = true;
+    });
+
+    return response;
+  }
+
+  editWallte(
+    String id,
+  ) async {
+    var response = await crud.postRequest(AppLinksApi.EditWallte, {
+      "id": id.toString(),
+    });
+
+    return response;
+  }
+
+  String newRatio = "";
+  editRatio(String id, String ratio) async {
+    var response = await crud.postRequest(AppLinksApi.EditRatio, {
+      "id": id.toString(),
+      "ratio": ratio.toString(),
+    });
+
+    showMore.value = false;
+
+    Get.to(ViewWallteSericesMan());
+
+    return response;
+  }
+
+  ///////////////////////get The  Orders............................./////////////
+  getOrders() async {
+    var response = await crud.postRequest(AppLinksApi.getUserOrder, {});
+
+    return response;
+  }
+
+  ////////////////Edit The Main Sub And SubType And Service Man................,,,,,,
+  /////////Edit MAIN...........////////
+
+  String idMainTypeEdit = "";
+  String nameArEditMainType = "";
+  String nameEnEditMainType = "";
+  String iconEditMainType = "";
+
+  editMainType(String idMainType, String nameArMainType, String nameEnMainType,
+      String iconMainType) async {
+    addToDataBase.value = true;
+    var response = await crud.postRequest(AppLinksApi.EditMainType, {
+      "services_main_id": idMainType.toString(),
+      "services_main_name_ar": nameArMainType.toString(),
+      "services_main_name_en": nameEnMainType.toString(),
+      "services_main_icon": iconMainType.toString(),
+    });
+    Future.delayed(const Duration(seconds: 2), () async {
+      addToDataBase.value = false;
+      isAddData.value = true;
+    });
+
+    return response;
+  } /////////Edit Sub...........////////
+
+  String idMainSubTypeEdit = "";
+  String idSubTypeEdit = "";
+  String nameArEditSubType = "";
+  String nameEnEditSubType = "";
+  String iconEditSubType = "";
+  String sub_type_description_ar = "";
+  String sub_type_description_en = "";
+
+  editSubType(String idMainType, String nameArType, String nameEnType,
+      String dArType, String dEnType, String iconType, String typeSubID) async {
+    addToDataBase.value = true;
+    var response = await crud.postRequest(AppLinksApi.EditSubType, {
+      "main_type_id": idMainType.toString(),
+      "sub_type_name_ar": nameArType.toString(),
+      "sub_type_name_en": nameEnType.toString(),
+      "sub_type_description_ar": dArType.toString(),
+      "sub_type_description_en": dEnType.toString(),
+      "sub_type_image": iconType.toString(),
+      "sub_type_id": typeSubID.toString(),
+    });
+    Future.delayed(const Duration(seconds: 2), () async {
+      addToDataBase.value = false;
+      isAddData.value = true;
+    });
+
+    return response;
+  }
+
+  //////////### Edit the type Of SubType ...............//////////////////
+  int isChooseEditTypeSubType = 0;
+
+  String idTypeOFSubType = "";
+  String IdSubType = "";
+  String nameTypeSubTypeAr = "";
+  String nameTypeSubTypeEn = "";
+  String AboutTypeSubTypeAr = "";
+  String AboutTypeSubTypeEn = "";
+  String PriceTypeOfSubType = "";
+
+  editTypeSubType(String idTypeOfSubType, String idSubType, String nameAr,
+      String nameEn, String aboutAr, String aboutEn, String price) async {
+    addToDataBase.value = true;
+    var response = await crud.postRequest(AppLinksApi.EditTypeOfSubType, {
+      "type_sub_id": idTypeOfSubType.toString(),
+      "sub_type_id_key": idSubType.toString(),
+      "name_type_sub": nameAr.toString(),
+      "name_type_sub_en": nameEn.toString(),
+      "about_type_sub": aboutAr.toString(),
+      "about_type_sub_en": aboutEn.toString(),
+      "price_type_sub": price.toString(),
+    });
+    Future.delayed(const Duration(seconds: 2), () async {
+      addToDataBase.value = false;
+      isAddData.value = true;
+    });
+
+    return response;
+  }
+
+  //////////### Edit the Service Man ...............//////////////////
+  int isChooseEditServiceMan = 0;
+
+  String idServiceManEdit = "";
+  String idSerivceJobEdit = "";
+  String nameServiceManEdit = "";
+  String idPhotoServiceManEdit = "";
+  String numberPhoneEditServiceMan = "";
+
+  editServiceMan(
+    String id,
+    String name,
+    String phone,
+    String idPhoto,
+    String idTypeJon,
+  ) async {
+    addToDataBase.value = true;
+    var response = await crud.postRequest(AppLinksApi.EditServiceMan, {
+      "id": id.toString(),
+      "name": name.toString(),
+      "phone": phone.toString(),
+      "id_photo": idPhoto.toString(),
+      "service_type": idTypeJon.toString(),
+    });
+    Future.delayed(const Duration(seconds: 2), () async {
+      addToDataBase.value = false;
+      isAddData.value = true;
+    });
+
+    return response;
+  } //////////### Edit the  Admin ...............//////////////////
+
+  int isChooseEditAdmin = 0;
+
+  String idAdminEdit = "";
+  String nameAdminEdit = "";
+  String passwordAdminEdit = "";
+  int typeOfAccessEditAdmin = 0;
+
+  editAdmin(
+    String id,
+    String name,
+    String password,
+    String type,
+  ) async {
+    addToDataBase.value = true;
+    var response = await crud.postRequest(AppLinksApi.EditTheAdmin, {
+      "admin_id": id.toString(),
+      "admin_name": name.toString(),
+      "admin_password": password.toString(),
+      "admin_type": type.toString(),
+    });
+    Future.delayed(const Duration(seconds: 2), () async {
+      addToDataBase.value = false;
+      isAddData.value = true;
     });
 
     return response;

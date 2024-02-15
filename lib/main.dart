@@ -9,6 +9,9 @@ import 'core/services/appservices.dart';
 
 import 'firebase_options.dart';
 
+import 'views/OrdersView/orders_view.dart';
+import 'views/ServicesMan/add_service_man.dart';
+import 'views/ServicesMan/view_services_man.dart';
 import 'views/UsersScreen/view_users.dart';
 
 void main() async {

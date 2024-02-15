@@ -29,4 +29,22 @@ class AppLinksApi {
 
   static const getNoticeData = "${path}/get_notice.php";
   static const addNotice = "${path}/add_dashboard/add_notice.php";
+
+  ///////////////////////////////////Services Man
+  static const getDataSerivcesMan = "${path}/get_services_man.php";
+  static const addDataSerivcesMan =
+      "${path}/add_dashboard/add_services_man.php";
+  static const EditWallte = "${path}/edit_dashboard/edit_wallte.php";
+  static const EditRatio = "${path}/edit_dashboard/edit_ratio.php";
+////////////////Edit.....................///////////
+
+  static const EditMainType = "${path}/edit_dashboard/edit_main_type.php";
+  static const EditSubType = "${path}/edit_sub_type.php";
+
+  static const EditTypeOfSubType =
+      "${path}/edit_dashboard/edit_type_of_sub_type.php";
+
+  static const EditServiceMan = "${path}/edit_dashboard/edit_services_man.php";
+
+  static const EditTheAdmin = "${path}/edit_dashboard/edit_admin.php";
 }

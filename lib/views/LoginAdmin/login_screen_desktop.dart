@@ -88,9 +88,7 @@ class LoginScreenDeskTop extends StatelessWidget {
                             homeController.nameAdmin = value.toString();
                             return value;
                           },
-                          validator: (p0) {
-                            return p0;
-                          },
+                          validator: (p0) {},
                         ),
                       ),
                       Padding(
@@ -118,9 +116,7 @@ class LoginScreenDeskTop extends StatelessWidget {
                             homeController.passwordAdin = value.toString();
                             return value;
                           },
-                          validator: (p0) {
-                            return p0;
-                          },
+                          validator: (p0) {},
                         ),
                       ),
                     ]),

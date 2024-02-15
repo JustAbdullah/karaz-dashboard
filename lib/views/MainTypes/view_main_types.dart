@@ -280,6 +280,11 @@ class ViewMainTypes extends StatelessWidget {
                                                                                 } else {
                                                                                   homeController.ofIdMainTypeDeleteOrEdit = snapshot.data['data'][i]['services_main_id'].toString();
                                                                                   homeController.showMore.value = true;
+
+                                                                                  homeController.idMainTypeEdit = snapshot.data['data'][i]['services_main_id'].toString();
+                                                                                  homeController.nameArEditMainType = snapshot.data['data'][i]['services_main_name_ar'].toString();
+                                                                                  homeController.nameEnEditMainType = snapshot.data['data'][i]['services_main_name_en'].toString();
+                                                                                  homeController.iconEditMainType = snapshot.data['data'][i]['services_main_icon'].toString();
                                                                                 }
                                                                               },
                                                                               child: Container(

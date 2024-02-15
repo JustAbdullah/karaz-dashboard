@@ -346,6 +346,14 @@ class ViewTypeSubTypes extends StatelessWidget {
                                                                                   homeController.aboutAccessTheAdminMessage.value = true;
                                                                                 } else {
                                                                                   homeController.ofIdTypeSubTypeDeleteOrEdit = snapshot.data['data'][i]['type_sub_id'].toString();
+                                                                                  ////////////////
+                                                                                  homeController.idTypeOFSubType = snapshot.data['data'][i]['type_sub_id'].toString();
+                                                                                  homeController.IdSubType = snapshot.data['data'][i]['sub_type_id_key'].toString();
+                                                                                  homeController.nameTypeSubTypeAr = snapshot.data['data'][i]['name_type_sub'].toString();
+                                                                                  homeController.nameTypeSubTypeEn = snapshot.data['data'][i]['name_type_sub_en'].toString();
+                                                                                  homeController.AboutTypeSubTypeAr = snapshot.data['data'][i]['about_type_sub'].toString();
+                                                                                  homeController.AboutTypeSubTypeEn = snapshot.data['data'][i]['about_type_sub_en'].toString();
+                                                                                  homeController.PriceTypeOfSubType = snapshot.data['data'][i]['price_type_sub'].toString();
                                                                                   homeController.showMore.value = true;
                                                                                 }
                                                                               },
@@ -532,6 +540,8 @@ class ViewTypeSubTypes extends StatelessWidget {
                                       homeController.aboutAccessTheAdminMessage
                                           .value = true;
                                     } else {
+                                      homeController.isChooseEditTypeSubType =
+                                          0;
                                       Get.to(AddTypesOFSubTypeScreenDeskTop());
                                     }
                                   },

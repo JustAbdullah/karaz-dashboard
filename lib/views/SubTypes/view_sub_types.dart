@@ -313,6 +313,14 @@ class ViewSubTypes extends StatelessWidget {
                                                                                   homeController.aboutAccessTheAdminMessage.value = true;
                                                                                 } else {
                                                                                   homeController.ofIdSubTypeDeleteOrEdit = snapshot.data['data'][i]['sub_type_id'].toString();
+                                                                                  ////////////////////
+                                                                                  homeController.idMainSubTypeEdit = snapshot.data['data'][i]['main_type_id'].toString();
+                                                                                  homeController.idSubTypeEdit = snapshot.data['data'][i]['sub_type_id'].toString();
+                                                                                  homeController.nameArEditSubType = snapshot.data['data'][i]['sub_type_name_ar'].toString();
+                                                                                  homeController.nameEnEditSubType = snapshot.data['data'][i]['sub_type_name_en'].toString();
+                                                                                  homeController.iconEditSubType = snapshot.data['data'][i]['sub_type_image'].toString();
+                                                                                  homeController.sub_type_description_ar = snapshot.data['data'][i]['sub_type_description_ar'].toString();
+                                                                                  homeController.sub_type_description_en = snapshot.data['data'][i]['sub_type_description_en'].toString();
                                                                                   homeController.showMore.value = true;
                                                                                 }
                                                                               },
@@ -500,6 +508,7 @@ class ViewSubTypes extends StatelessWidget {
                                           .value = true;
                                     } else {
                                       Get.to(AddSubTypeScreenDeskTop());
+                                             homeController.isChooseEditSubType = 0;
                                     }
                                   },
                                   child: Container(
@@ -695,6 +704,7 @@ class ViewSubTypes extends StatelessWidget {
                                 theRight: 00,
                                 child: InkWell(
                                   onTap: () {
+
                                     controller.aboutAccessTheAdminMessage
                                         .value = false;
                                   },

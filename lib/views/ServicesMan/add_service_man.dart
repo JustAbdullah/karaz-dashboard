@@ -17,15 +17,16 @@ import '../../responsive_screen.dart';
 import '../chooseFromAPi/list_of_types_main_types.dart';
 import '../menu/menu.dart';
 
-class AddSubTypeScreenDeskTop extends StatefulWidget {
-  const AddSubTypeScreenDeskTop({super.key});
+class AddServiceManScreenDeskTop extends StatefulWidget {
+  const AddServiceManScreenDeskTop({super.key});
 
   @override
-  State<AddSubTypeScreenDeskTop> createState() =>
-      _AddSubTypeScreenDeskTopState();
+  State<AddServiceManScreenDeskTop> createState() =>
+      _AddServiceManScreenDeskTopState();
 }
 
-class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
+class _AddServiceManScreenDeskTopState
+    extends State<AddServiceManScreenDeskTop> {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.put(HomeController());
@@ -53,7 +54,7 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                               alignment: Alignment.topCenter,
                               child: TextCustom(
                                   height: 1.5.h,
-                                  theText: "صفحة إضافة-تعديل الخدمات  الفرعية ",
+                                  theText: "صفحة إضافة-تعديل الفني ",
                                   fontSizeWidth: 7.sp,
                                   fontFamily: AppTextStyles.Almarai,
                                   fontColor: AppColors.blackColor),
@@ -66,7 +67,7 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 50.w),
                                 child: Text(
-                                  "لطفًا قم بإدخال البيانات لإضافة-تعديل الخدمات الفرعية في كرز",
+                                  "لطفًا قم بإدخال البيانات لإضافة-تعديل  الفني في كرز",
                                   style: TextStyle(
                                       height: 1.5.h,
                                       fontSize: 5.sp,
@@ -90,21 +91,20 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                                     padding: const EdgeInsets.only(left: 12),
                                     child: TextFormField(
                                       onChanged: (value) {
-                                        homeController.nameOFSubMain = value;
-                                        homeController.nameArEditSubType =
+                                        homeController.nameOfServiceMan = value;
+                                        homeController.nameServiceManEdit =
                                             value;
                                       },
                                       onSaved: (newValue) {
-                                        homeController.nameOFSubMain =
+                                        homeController.nameOfServiceMan =
                                             newValue.toString();
-
-                                        homeController.nameArEditSubType =
+                                        homeController.nameServiceManEdit =
                                             newValue.toString();
                                       },
                                       controller: homeController.controllerOne,
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
-                                          hintText: 'اسم الخدمة بالعربي',
+                                          hintText: 'اسم الفني ',
                                           isDense: true, // important line
                                           contentPadding: EdgeInsets.fromLTRB(
                                               10,
@@ -122,8 +122,8 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                                               borderRadius:
                                                   BorderRadius.circular(30),
                                               borderSide: BorderSide.none)),
-                                      maxLines: 2,
-                                      minLines: 2,
+                                      maxLines: 5,
+                                      minLines: 5,
                                     ),
                                   ),
                                 )),
@@ -142,21 +142,22 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                                     child: TextFormField(
                                       controller: homeController.controllerTwo,
                                       onChanged: (value) {
-                                        homeController.nameEnglishTypeSub =
+                                        homeController.phoneNumberServiceMan =
                                             value;
 
-                                        homeController.nameEnEditSubType =
-                                            value;
+                                        homeController
+                                            .numberPhoneEditServiceMan = value;
                                       },
                                       onSaved: (newValue) {
-                                        homeController.nameEnglishTypeSub =
+                                        homeController.phoneNumberServiceMan =
                                             newValue.toString();
-                                        homeController.nameEnEditSubType =
+                                        homeController
+                                                .numberPhoneEditServiceMan =
                                             newValue.toString();
                                       },
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
-                                          hintText: 'اسم الخدمة بالانجليزي',
+                                          hintText: 'رقم الهاتف للفني',
                                           isDense: true, // important line
                                           contentPadding: EdgeInsets.fromLTRB(
                                               10,
@@ -174,8 +175,8 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                                               borderRadius:
                                                   BorderRadius.circular(30),
                                               borderSide: BorderSide.none)),
-                                      maxLines: 15,
-                                      minLines: 15,
+                                      maxLines: 5,
+                                      minLines: 5,
                                     ),
                                   ),
                                 )),
@@ -186,7 +187,7 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                                 padding: EdgeInsets.symmetric(horizontal: 30.w),
                                 child: Material(
                                   elevation: 4,
-                                  shadowColor: Colors.blue,
+                                  shadowColor: Colors.black,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Padding(
@@ -195,20 +196,19 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                                       controller:
                                           homeController.controllerThree,
                                       onChanged: (value) {
-                                        homeController.DescriptionSubTypeAr =
-                                            value;
-                                        homeController.sub_type_description_ar =
+                                        homeController.idPhoto = value;
+                                        homeController.idPhotoServiceManEdit =
                                             value;
                                       },
                                       onSaved: (newValue) {
-                                        homeController.DescriptionSubTypeAr =
+                                        homeController.idPhoto =
                                             newValue.toString();
-                                        homeController.sub_type_description_ar =
+                                        homeController.idPhotoServiceManEdit =
                                             newValue.toString();
                                       },
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
-                                          hintText: 'وصف الخدمة بالعربي',
+                                          hintText: 'رقم الهوية للفني',
                                           isDense: true, // important line
                                           contentPadding: EdgeInsets.fromLTRB(
                                               10,
@@ -226,60 +226,8 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                                               borderRadius:
                                                   BorderRadius.circular(30),
                                               borderSide: BorderSide.none)),
-                                      maxLines: 15,
-                                      minLines: 15,
-                                    ),
-                                  ),
-                                )),
-                            SizedBox(
-                              height: 17.h,
-                            ),
-                            Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 30.w),
-                                child: Material(
-                                  elevation: 4,
-                                  shadowColor: Colors.blue,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 12),
-                                    child: TextFormField(
-                                      controller: homeController.controllerFour,
-                                      onChanged: (value) {
-                                        homeController.DescriptionSubTypeEn =
-                                            value;
-
-                                        homeController.sub_type_description_en =
-                                            value;
-                                      },
-                                      onSaved: (newValue) {
-                                        homeController.DescriptionSubTypeEn =
-                                            newValue.toString();
-                                        homeController.sub_type_description_en =
-                                            newValue.toString();
-                                      },
-                                      keyboardType: TextInputType.text,
-                                      decoration: InputDecoration(
-                                          hintText: 'وصف الخدمة بالانجليزي',
-                                          isDense: true, // important line
-                                          contentPadding: EdgeInsets.fromLTRB(
-                                              10,
-                                              10,
-                                              10,
-                                              0), // control your hints text size
-                                          hintStyle: TextStyle(
-                                              fontFamily: AppTextStyles.Almarai,
-                                              letterSpacing: 2,
-                                              color: AppColors.theAppColorBlue,
-                                              fontWeight: FontWeight.bold),
-                                          fillColor: Colors.white30,
-                                          filled: true,
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                              borderSide: BorderSide.none)),
-                                      maxLines: 15,
-                                      minLines: 15,
+                                      maxLines: 5,
+                                      minLines: 5,
                                     ),
                                   ),
                                 )),
@@ -324,51 +272,6 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                               ],
                             ),
                             SizedBox(
-                              height: 10.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                TextCustom(
-                                    height: 1.5.h,
-                                    theText: "اختيار صورة رمزية للخدمة:",
-                                    fontSizeWidth: 5.sp,
-                                    fontFamily: AppTextStyles.Almarai,
-                                    fontColor: AppColors.blackColor),
-                                InkWell(
-                                  onTap: () async {
-                                    homeController.chooseImageOne();
-                                  },
-                                  child: GetX<HomeController>(
-                                    builder: (controller) => ContainerCustomApi(
-                                        colorContainer:
-                                            controller.addImageWork.value ==
-                                                    true
-                                                ? Colors.green
-                                                : AppColors.redColor,
-                                        theBorderRadius: 15,
-                                        heigthContainer: 30.h,
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 37.h),
-                                          child: Text(
-                                            controller.addImageWork.value ==
-                                                    true
-                                                ? "تم رفع الصورة"
-                                                : "رفع صورة",
-                                            style: TextStyle(
-                                              color: AppColors.whiteColor,
-                                              fontFamily: AppTextStyles.Almarai,
-                                              fontSize: 4.sp,
-                                            ),
-                                          ),
-                                        )),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
                               height: 30.h,
                             ),
                             Row(
@@ -377,30 +280,23 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    if (homeController.isChooseEditSubType ==
+                                    if (homeController.isChooseEditServiceMan ==
                                         1) {
-                                      homeController.editSubType(
-                                          homeController.idMainSubTypeEdit
-                                              .toString(),
-                                          homeController.nameArEditSubType,
-                                          homeController.nameEnEditSubType,
+                                      homeController.editServiceMan(
+                                          homeController.idServiceManEdit,
+                                          homeController.nameServiceManEdit,
                                           homeController
-                                              .sub_type_description_ar,
-                                          homeController
-                                              .sub_type_description_en,
-                                          homeController.iconEditSubType,
-                                          homeController.idSubTypeEdit);
+                                              .numberPhoneEditServiceMan,
+                                          homeController.idPhotoServiceManEdit,
+                                          homeController.idSerivceJobEdit);
                                     } else {
-                                      homeController.addNewSubType(
+                                      homeController.addSeriveMan(
+                                        homeController.nameOfServiceMan
+                                            .toString(),
+                                        homeController.idPhoto.toString(),
+                                        homeController.phoneNumberServiceMan
+                                            .toString(),
                                         homeController.idTheMainType.toString(),
-                                        homeController.nameOFSubMain.toString(),
-                                        homeController.nameEnglishTypeSub
-                                            .toString(),
-                                        homeController.DescriptionSubTypeAr
-                                            .toString(),
-                                        homeController.DescriptionSubTypeEn
-                                            .toString(),
-                                        homeController.urlImageOne.toString(),
                                       );
                                     }
                                   },
@@ -412,7 +308,7 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 47.h),
                                       child: Text(
-                                        "إضافة-تعديل الخدمة الان",
+                                        "إضافة-تعديل الفني الان",
                                         style: TextStyle(
                                           color: AppColors.balckColorTypeThree,
                                           fontFamily: AppTextStyles.Almarai,
@@ -556,7 +452,7 @@ class _AddSubTypeScreenDeskTopState extends State<AddSubTypeScreenDeskTop> {
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 20.w),
                                     child: Text(
-                                      "تم إضافة البيانات  بنجاح ",
+                                      "تم إضافة-تعديل البيانات  بنجاح ",
                                       style: TextStyle(
                                           height: 1.7.h,
                                           color: Colors.greenAccent,
