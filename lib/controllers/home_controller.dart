@@ -21,7 +21,9 @@ import '../core/class/class/crud.dart';
 import 'package:path/path.dart' as Path;
 import 'dart:io';
 
+import '../views/InvVeiw/inv_view.dart';
 import '../views/Notice/notice_view.dart';
+import '../views/NoticeServicesMan/notice_view_services.dart';
 import '../views/Notifications/notifications.dart';
 import '../views/OrdersView/orders_view.dart';
 import '../views/ServicesMan/view_services_man.dart';
@@ -82,6 +84,23 @@ class HomeController extends GetxController {
     } else {}
     return response;
   }
+
+  getDataNoticeDatabaseServices() async {
+    var response =
+        await crud.postRequest(AppLinksApi.getNoticeDataServices, {});
+
+    if (response['status'] == "success") {
+    } else {}
+    return response;
+  }
+
+  getDataInv() async {
+    var response = await crud.postRequest(AppLinksApi.getInv, {});
+
+    if (response['status'] == "success") {
+    } else {}
+    return response;
+  }
   //////..............ONInit............................////////////////
 
   @override
@@ -96,53 +115,75 @@ class HomeController extends GetxController {
   RxInt countTheMenu = 2.obs;
 
   GoToAdminScreen() {
+    showMore.value = false;
     Get.to(ViewAdmin());
     countTheMenu.value = 1;
   }
 
   GoToUsersScreen() {
+    showMore.value = false;
     Get.to(ViewUsers());
     countTheMenu.value = 2;
   }
 
   GoToMainTypesScreen() {
+    showMore.value = false;
     Get.to(ViewMainTypes());
     countTheMenu.value = 3;
   }
 
   GoToSubTypesScreen() {
+    showMore.value = false;
     Get.to(ViewSubTypes());
     countTheMenu.value = 4;
   }
 
   GoToTypeSubTypesScreen() {
+    showMore.value = false;
     Get.to(ViewTypeSubTypes());
     countTheMenu.value = 5;
   }
 
   GoToNotificationsScreen() {
+    showMore.value = false;
     Get.to(Notifications());
     countTheMenu.value = 6;
   }
 
   GoToNoticeScreen() {
+    showMore.value = false;
     Get.to(NoticeView());
     countTheMenu.value = 7;
   }
 
   GoToServicesMan() {
+    showMore.value = false;
     Get.to(ViewServicesMan());
     countTheMenu.value = 8;
   }
 
   GoToOrders() {
+    showMore.value = false;
     Get.to(OrdersView());
     countTheMenu.value = 9;
   }
 
   GoToWallte() {
+    showMore.value = false;
     Get.to(ViewWallteSericesMan());
     countTheMenu.value = 10;
+  }
+
+  GoToServicesNot() {
+    showMore.value = false;
+    Get.to(NoticeViewServiecs());
+    countTheMenu.value = 11;
+  }
+
+  GoToInv() {
+    showMore.value = false;
+    Get.to(InvViewServiecs());
+    countTheMenu.value = 12;
   }
 
   RxBool showMore = false.obs;
@@ -169,14 +210,14 @@ class HomeController extends GetxController {
         "body": thebody,
         "sound": "default",
         "image":
-            "https://firebasestorage.googleapis.com/v0/b/smoe-48557.appspot.com/o/1222.png?alt=media&token=620f0b0c-40c7-4fe8-a0f9-269ff7dd3f8f"
+            "https://firebasestorage.googleapis.com/v0/b/jalai-45565.appspot.com/o/logo.png?alt=media&token=4c593126-a27b-4449-bf32-7fd37f1a9b47"
       },
       "data": {
         "message": "Offer!",
         "image_url":
-            "https://firebasestorage.googleapis.com/v0/b/smoe-48557.appspot.com/o/1222.png?alt=media&token=620f0b0c-40c7-4fe8-a0f9-269ff7dd3f8f",
+            "https://firebasestorage.googleapis.com/v0/b/jalai-45565.appspot.com/o/logo.png?alt=media&token=4c593126-a27b-4449-bf32-7fd37f1a9b47",
         "image":
-            "https://firebasestorage.googleapis.com/v0/b/smoe-48557.appspot.com/o/1222.png?alt=media&token=620f0b0c-40c7-4fe8-a0f9-269ff7dd3f8f"
+            "https://firebasestorage.googleapis.com/v0/b/jalai-45565.appspot.com/o/logo.png?alt=media&token=4c593126-a27b-4449-bf32-7fd37f1a9b47"
       }
     };
 
@@ -201,6 +242,11 @@ class HomeController extends GetxController {
     // ignore: unused_local_variable
     var response =
         await crud.postRequestFile(AppLinksApi.uploadimage, {}, mfile!);
+  }
+
+  upnew(File? mfile) async {
+    // ignore: unused_local_variable
+    var response = await crud.postRequestFile(AppLinksApi.imageNew, {}, mfile!);
   }
 
   RxBool addImageWork = false.obs;

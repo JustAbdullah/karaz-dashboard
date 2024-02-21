@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   ///////////The App Color///////////////////////
-  static const Color theAppColorBlue = Color.fromARGB(255, 35, 38, 44);
-  static const Color theAppColorBlueWhite = Color(0xFFEC1C24);
+  static const Color theAppColorBlue = Color(0xFF125B5E);
+  static const Color theAppColorBlueWhite =  Color(0xFF125B5E);
 
   ///////////////White Colors......../////////////
   static const Color whiteColor = Color.fromARGB(255, 255, 255, 255);

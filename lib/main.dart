@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:karaz_dashboard/testing.dart';
 import 'package:karaz_dashboard/views/LoginAdmin/login_screen_desktop.dart';
 import 'core/constant/color_primary.dart';
 import 'core/services/appservices.dart';
 
 import 'firebase_options.dart';
 
+import 'views/InvVeiw/inv_view.dart';
 import 'views/OrdersView/orders_view.dart';
 import 'views/ServicesMan/add_service_man.dart';
 import 'views/ServicesMan/view_services_man.dart';
@@ -43,13 +45,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       title: "Karaz Dashboard",
-      home: const Scaffold(
+      home: Scaffold(
           body: SafeArea(
               child: ScreenUtilInit(
                   designSize: Size(360, 690),
                   child: Directionality(
                       textDirection: TextDirection.rtl,
-                      child: LoginScreenDeskTop())))),
+                      child: InvViewServiecs())))),
       theme: ThemeData(primarySwatch: ModeColor.mode),
       builder: (context, child) {
         final mediaQueryData = MediaQuery.of(context);

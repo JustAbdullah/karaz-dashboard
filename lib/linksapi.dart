@@ -28,6 +28,7 @@ class AppLinksApi {
 /////////////////////Notice..........////////
 
   static const getNoticeData = "${path}/get_notice.php";
+  static const getNoticeDataServices = "${path}/get_notice_man_services.php";
   static const addNotice = "${path}/add_dashboard/add_notice.php";
 
   ///////////////////////////////////Services Man
@@ -47,4 +48,9 @@ class AppLinksApi {
   static const EditServiceMan = "${path}/edit_dashboard/edit_services_man.php";
 
   static const EditTheAdmin = "${path}/edit_dashboard/edit_admin.php";
+
+  ///////////////////////////////
+
+  static const imageNew = "https://larra.xyz/image_testing/image_upload.php";
+  static const getInv = "https://larra.xyz/php_serivecs/dashboard/get_inv.php";
 }
