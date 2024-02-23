@@ -232,7 +232,11 @@ class Menu extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        controller.GoToServicesMan();
+                        if (controller.typeOfAdmin.value != 2) {
+                          controller.aboutAccessTheAdminMessage.value = true;
+                        } else {
+                          controller.GoToServicesMan();
+                        }
                       },
                       child: Container(
                         alignment: Alignment.center,

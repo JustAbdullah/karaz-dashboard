@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
                   designSize: Size(360, 690),
                   child: Directionality(
                       textDirection: TextDirection.rtl,
-                      child: InvViewServiecs())))),
+                      child: LoginScreenDeskTop())))),
       theme: ThemeData(primarySwatch: ModeColor.mode),
       builder: (context, child) {
         final mediaQueryData = MediaQuery.of(context);

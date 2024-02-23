@@ -117,72 +117,89 @@ class HomeController extends GetxController {
   GoToAdminScreen() {
     showMore.value = false;
     Get.to(ViewAdmin());
+    searchingClearWhenMove();
     countTheMenu.value = 1;
   }
 
   GoToUsersScreen() {
     showMore.value = false;
     Get.to(ViewUsers());
+    searchingClearWhenMove();
     countTheMenu.value = 2;
   }
 
   GoToMainTypesScreen() {
     showMore.value = false;
     Get.to(ViewMainTypes());
+    searchingClearWhenMove();
     countTheMenu.value = 3;
   }
 
   GoToSubTypesScreen() {
     showMore.value = false;
     Get.to(ViewSubTypes());
+    searchingClearWhenMove();
     countTheMenu.value = 4;
   }
 
   GoToTypeSubTypesScreen() {
     showMore.value = false;
     Get.to(ViewTypeSubTypes());
+    searchingClearWhenMove();
     countTheMenu.value = 5;
   }
 
   GoToNotificationsScreen() {
     showMore.value = false;
+    searchingClearWhenMove();
     Get.to(Notifications());
+
     countTheMenu.value = 6;
   }
 
   GoToNoticeScreen() {
     showMore.value = false;
+    searchingClearWhenMove();
     Get.to(NoticeView());
+
     countTheMenu.value = 7;
   }
 
   GoToServicesMan() {
     showMore.value = false;
+    searchingClearWhenMove();
     Get.to(ViewServicesMan());
+
     countTheMenu.value = 8;
   }
 
   GoToOrders() {
     showMore.value = false;
+    searchingClearWhenMove();
     Get.to(OrdersView());
+
     countTheMenu.value = 9;
   }
 
   GoToWallte() {
     showMore.value = false;
     Get.to(ViewWallteSericesMan());
+    searchingClearWhenMove();
     countTheMenu.value = 10;
   }
 
   GoToServicesNot() {
     showMore.value = false;
     Get.to(NoticeViewServiecs());
+    searchingClearWhenMove();
     countTheMenu.value = 11;
   }
 
   GoToInv() {
     showMore.value = false;
+    searchingClearWhenMove();
     Get.to(InvViewServiecs());
+
     countTheMenu.value = 12;
   }
 
@@ -203,8 +220,7 @@ class HomeController extends GetxController {
     var url = Uri.parse('https://fcm.googleapis.com/fcm/send');
 
     var body = {
-      "to":
-          "eLVgyyCnSimxrOL5H8j16s:APA91bEM0Rlexy5yL4A0SWI_ffP-JTCOYS6lcgHDS32vFIujD2NBLkgAqDg_jncEbrVZJ-wjkXW7V7gHyehmzY0HaydBm5F4eF-FyhBWqp-ztXU3SO1nSqH1QnFJuD6O8hT6iq-XWYwu",
+       "to": "/topics/all",
       "notification": {
         "title": title,
         "body": thebody,
@@ -400,7 +416,9 @@ class HomeController extends GetxController {
   deleteMainType(String idOFMainType) async {
     var response = await crud.postRequest(AppLinksApi.deleteMainType,
         {"services_main_id": idOFMainType.toString()});
-    Get.to(ViewMainTypes());
+
+    showMore.value = false;
+    Get.offAll(ViewMainTypes());
 
     return response;
   }
@@ -411,7 +429,8 @@ class HomeController extends GetxController {
   deleteSubType(String idOFSubType) async {
     var response = await crud.postRequest(
         AppLinksApi.deleteSubType, {"sub_type_id": idOFSubType.toString()});
-    Get.to(ViewSubTypes());
+    showMore.value = false;
+    Get.offAll(ViewSubTypes());
 
     return response;
   } //////////// Tpee Of Sub Types............/
@@ -420,7 +439,30 @@ class HomeController extends GetxController {
   deleteTypeSubType(String idOFTypeSubType) async {
     var response = await crud.postRequest(AppLinksApi.deleteTypeOfSub,
         {"type_sub_id": idOFTypeSubType.toString()});
-    Get.to(ViewTypeSubTypes());
+    showMore.value = false;
+    Get.offAll(ViewTypeSubTypes());
+
+    return response;
+  }
+
+//////////Delete Admin..........///////////
+  deleteAdmin(String idOFAdmin) async {
+    var response = await crud.postRequest(
+        AppLinksApi.deleteAdmin, {"admin_id": idOFAdmin.toString()});
+
+    showMore.value = false;
+    Get.offAll(ViewAdmin());
+
+    return response;
+  }
+
+//////////Delete Admin..........///////////
+  deleteServiceMan(String idOFMan) async {
+    var response = await crud
+        .postRequest(AppLinksApi.deleteServiceMan, {"id": idOFMan.toString()});
+
+    showMore.value = false;
+    Get.offAll(ViewServicesMan());
 
     return response;
   }
@@ -684,6 +726,142 @@ class HomeController extends GetxController {
       addToDataBase.value = false;
       isAddData.value = true;
     });
+
+    return response;
+  }
+
+  ///////////////////////######################################Searching .............//////////////
+
+  TextEditingController searchingName = TextEditingController();
+  String nameSearching = "";
+  RxBool isSearchingName = false.obs;
+  RxBool TheResultNameSearch = false.obs;
+  RxBool isClickTheResult = false.obs;
+  RxBool noDataSearching = true.obs;
+
+  searchingClearWhenMove() {
+    nameSearching = "";
+    searchingName.clear();
+    isSearchingName.value = false;
+    isClickTheResult.value = false;
+    TheResultNameSearch.value = false;
+    noDataSearching.value = true;
+  }
+
+  searchFlutter() async {
+    if (isSearchingName.value == true) {
+      if (isClickTheResult.value == true) {
+        nameSearching = "";
+        searchingName.clear();
+        isSearchingName.value = false;
+        isClickTheResult.value = false;
+        TheResultNameSearch.value = false;
+        noDataSearching.value = true;
+      } else {
+        TheResultNameSearch.value = true;
+        isClickTheResult.value = true;
+      }
+    } else {}
+  }
+
+////////////Admin//////////////
+
+  searchinfAdminName(String name) async {
+    var response = await crud.postRequest(AppLinksApi.searchingAdminName, {
+      'search': name.toString(),
+    });
+///////
+    if (response['status'] == "success") {
+      noDataSearching.value = true;
+    } else {
+      noDataSearching.value = false;
+    }
+
+    return response;
+  }
+  ////////////User//////////////
+
+  searchinfUserName(String name) async {
+    var response = await crud.postRequest(AppLinksApi.searchingUserName, {
+      'search': name.toString(),
+    });
+///////
+    if (response['status'] == "success") {
+      noDataSearching.value = true;
+    } else {
+      noDataSearching.value = false;
+    }
+
+    return response;
+  } ////////////Main//////////////
+
+  searchinMainName(String name) async {
+    var response = await crud.postRequest(AppLinksApi.searchingMainTypeName, {
+      'search': name.toString(),
+    });
+///////
+    if (response['status'] == "success") {
+      noDataSearching.value = true;
+    } else {
+      noDataSearching.value = false;
+    }
+
+    return response;
+  } ////////////Sub//////////////
+
+  searchinSubName(String name) async {
+    var response = await crud.postRequest(AppLinksApi.searchingSubTypeName, {
+      'search': name.toString(),
+    });
+///////
+    if (response['status'] == "success") {
+      noDataSearching.value = true;
+    } else {
+      noDataSearching.value = false;
+    }
+
+    return response;
+  } ////////////TypeSub//////////////
+
+  searchinTypeSubName(String name) async {
+    var response =
+        await crud.postRequest(AppLinksApi.searchingTypeSubTypeName, {
+      'search': name.toString(),
+    });
+///////
+    if (response['status'] == "success") {
+      noDataSearching.value = true;
+    } else {
+      noDataSearching.value = false;
+    }
+
+    return response;
+  } ////////////Order//////////////
+
+  searchinOrder(String name) async {
+    var response = await crud.postRequest(AppLinksApi.searchingOrderNumber, {
+      'search': name.toString(),
+    });
+///////
+    if (response['status'] == "success") {
+      noDataSearching.value = true;
+    } else {
+      noDataSearching.value = false;
+    }
+
+    return response;
+  } ////////////Man Service//////////////
+
+  searchinServiceMan(String name) async {
+    var response = await crud.postRequest(AppLinksApi.searchingNameServiceMan, {
+      'search': name.toString(),
+    });
+///////
+    if (response['status'] == "success") {
+      noDataSearching.value = true;
+    } else {
+      noDataSearching.value = false;
+    }
 
     return response;
   }

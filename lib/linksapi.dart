@@ -20,6 +20,10 @@ class AppLinksApi {
   static const deleteTypeOfSub =
       "${path}/delete_dashboard/delete_type_of_sub.php";
 
+  static const deleteAdmin = "${path}/delete_dashboard/delete_admin.php";
+  static const deleteServiceMan =
+      "${path}/delete_dashboard/delete_service_man.php";
+
   /////////////Admin...............////////////
   static const getAdminsData = "${path}/get_admin.php";
   static const LoginAdmin = "${path}/login_admin.php";
@@ -53,4 +57,13 @@ class AppLinksApi {
 
   static const imageNew = "https://larra.xyz/image_testing/image_upload.php";
   static const getInv = "https://larra.xyz/php_serivecs/dashboard/get_inv.php";
+/////////////////////////////////////############# Searching.................../////////////////////////
+  static const searchingAdminName = "${path}/searching_admin.php";
+  static const searchingUserName = "${path}/searching_name_user.php";
+  static const searchingMainTypeName = "${path}/searching_main_type.php";
+  static const searchingSubTypeName = "${path}/searching_sub_type.php";
+  static const searchingTypeSubTypeName = "${path}/searching_type_sub.php";
+  static const searchingOrderNumber = "${path}/searching_id_order.php";
+  static const searchingNameServiceMan =
+      "${path}/searching_name_service_man.php";
 }
