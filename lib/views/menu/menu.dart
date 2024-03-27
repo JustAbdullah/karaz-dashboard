@@ -369,6 +369,33 @@ class Menu extends StatelessWidget {
                     SizedBox(
                       height: 30.h,
                     ),
+                    InkWell(
+                      onTap: () {
+                        controller.GoToAccountsOrders();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 37.w,
+                        height: 35.h,
+                        decoration: BoxDecoration(
+                            color: controller.countTheMenu.value == 13
+                                ? AppColors.theAppColorBlueWhite
+                                : Color(0xFF171821),
+                            borderRadius: BorderRadius.circular(3)),
+                        child: Text(
+                          "طلبات الانضمام",
+                          style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontFamily: AppTextStyles.Almarai,
+                            fontSize: 18,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
                   ]),
                 ),
               )),

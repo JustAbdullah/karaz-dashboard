@@ -10,6 +10,7 @@ import 'core/services/appservices.dart';
 
 import 'firebase_options.dart';
 
+import 'views/Accounts/account_services_man.dart';
 import 'views/InvVeiw/inv_view.dart';
 import 'views/OrdersView/orders_view.dart';
 import 'views/ServicesMan/add_service_man.dart';

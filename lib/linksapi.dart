@@ -66,4 +66,9 @@ class AppLinksApi {
   static const searchingOrderNumber = "${path}/searching_id_order.php";
   static const searchingNameServiceMan =
       "${path}/searching_name_service_man.php";
+
+  static const getRequetsSerivceMan = "${path}/get_request_services_man.php";
+
+  static const makeAccountReadyServiceMan =
+      "https://larra.xyz/php_serivecs/dashboard/make_account_ready_service_man.php";
 }

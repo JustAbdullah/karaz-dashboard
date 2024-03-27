@@ -21,6 +21,7 @@ import '../core/class/class/crud.dart';
 import 'package:path/path.dart' as Path;
 import 'dart:io';
 
+import '../views/Accounts/account_services_man.dart';
 import '../views/InvVeiw/inv_view.dart';
 import '../views/Notice/notice_view.dart';
 import '../views/NoticeServicesMan/notice_view_services.dart';
@@ -203,6 +204,14 @@ class HomeController extends GetxController {
     countTheMenu.value = 12;
   }
 
+  GoToAccountsOrders() {
+    showMore.value = false;
+    searchingClearWhenMove();
+    Get.to(ViewServicesManAccounts());
+
+    countTheMenu.value = 13;
+  }
+
   RxBool showMore = false.obs;
 
 ///////Send Notifiction................////////////
@@ -220,7 +229,7 @@ class HomeController extends GetxController {
     var url = Uri.parse('https://fcm.googleapis.com/fcm/send');
 
     var body = {
-       "to": "/topics/all",
+      "to": "/topics/all",
       "notification": {
         "title": title,
         "body": thebody,
@@ -586,6 +595,13 @@ class HomeController extends GetxController {
     return response;
   }
 
+  ////////////////////get The Request ServiceMan......../////////////
+  getRequestMan() async {
+    var response = await crud.postRequest(AppLinksApi.getRequetsSerivceMan, {});
+
+    return response;
+  }
+
   ////////////////Edit The Main Sub And SubType And Service Man................,,,,,,
   /////////Edit MAIN...........////////
 
@@ -862,6 +878,79 @@ class HomeController extends GetxController {
     } else {
       noDataSearching.value = false;
     }
+
+    return response;
+  }
+
+  ///////////////////////////////////////////......Request Services Man ............................../////////////////////
+
+  String nameRquestSeriveMan = "غير معروف";
+  String imaRquestSeriveMan = "";
+  String typeOfWorkRquestSeriveMan = "آلة الغسيل";
+  String phoneRquestSeriveMan = "+777";
+  String idRquestSeriveMan = "79797799";
+  String tokenServiceMan = "88";
+
+  sendNoToServiceManAboutRquest(
+      String title, String thebody, String token) async {
+    var headersList = {
+      'Accept': '*/*',
+      'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
+      'Content-Type': 'application/json',
+      'Authorization':
+          'key=AAAAG1L9LFo:APA91bGxzrfDo94mD1i7BmA9QKK_KkXJy1xSnoe--K5Zo5pwrVjtTcQnSxtH4eirPGfGJRz8eA2aFYB1vl_dT5GXFa3zwA8h4fcq0wQAXmre2Tp35Y2wSuiTPBRKx53D2-8U8sgRzXfm'
+    };
+    var url = Uri.parse('https://fcm.googleapis.com/fcm/send');
+
+    var body = {
+      "to": token.toString(),
+      "notification": {
+        "title": title,
+        "body": thebody,
+        "sound": "default",
+        "image":
+            "https://firebasestorage.googleapis.com/v0/b/jalai-45565.appspot.com/o/logo.png?alt=media&token=4c593126-a27b-4449-bf32-7fd37f1a9b47"
+      },
+      "data": {
+        "message": "Offer!",
+        "image_url":
+            "https://firebasestorage.googleapis.com/v0/b/jalai-45565.appspot.com/o/logo.png?alt=media&token=4c593126-a27b-4449-bf32-7fd37f1a9b47",
+        "image":
+            "https://firebasestorage.googleapis.com/v0/b/jalai-45565.appspot.com/o/logo.png?alt=media&token=4c593126-a27b-4449-bf32-7fd37f1a9b47"
+      }
+    };
+
+    var req = http.Request('POST', url);
+    req.headers.addAll(headersList);
+    req.body = json.encode(body);
+
+    var res = await req.send();
+    final resBody = await res.stream.bytesToString();
+
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      print(resBody);
+    } else {
+      print(res.reasonPhrase);
+    }
+  }
+
+  makeAccountready(String id) async {
+    var response =
+        await crud.postRequest(AppLinksApi.makeAccountReadyServiceMan, {
+      'id': id.toString(),
+    });
+///////
+    showMore.value = false;
+    Get.to(ViewServicesManAccounts());
+    return response;
+  }
+
+  deleteAccountServiceMan(String idOFMan) async {
+    var response = await crud
+        .postRequest(AppLinksApi.deleteServiceMan, {"id": idOFMan.toString()});
+
+    showMore.value = false;
+    Get.offAll(ViewServicesManAccounts());
 
     return response;
   }
