@@ -596,7 +596,7 @@ class ViewServicesManAccounts extends StatelessWidget {
                                     ),
                                     child: TextCustom(
                                         height: 1.5,
-                                        theText: "رقم الهوية",
+                                        theText: "اسم الفني",
                                         fontSizeWidth: 4.sp,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: AppTextStyles.Almarai,
@@ -634,7 +634,7 @@ class ViewServicesManAccounts extends StatelessWidget {
                                     ),
                                     child: TextCustom(
                                         height: 1.5,
-                                        theText: "الاسم",
+                                        theText: "رقم الهوية",
                                         fontSizeWidth: 4.sp,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: AppTextStyles.Almarai,
@@ -695,7 +695,8 @@ class ViewServicesManAccounts extends StatelessWidget {
                                       ))),
                               PaddingCustom(
                                 theTop: 40,
-                                theRight: 0,
+                                theRight: 10,
+                                theLeft: 10,
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   mainAxisAlignment:
@@ -704,8 +705,8 @@ class ViewServicesManAccounts extends StatelessWidget {
                                     InkWell(
                                       onTap: () {
                                         controller.sendNoToServiceManAboutRquest(
-                                            "إشعار رفص طلب الإنضمام",
-                                            "عزيزي الفني لقد تم رفض طلبك للانضمام لتطبيق فنيين كرز..المعذره ولكن سيتم حذف بياناتك وعليك إعادة إنشاء طلب الانضمام مع التقييد بالشروط",
+                                            "إشعار رفض طلب الإنضمام",
+                                            "عزيزي الفني لقد تم رفض طلبك للانضمام لتطبيق فنيين كرز..المعذره ولكن سيتم حذف بياناتك وعليك إعادة إنشاء طلب الانضمام مع التقيد بالشروط",
                                             controller.tokenServiceMan
                                                 .toString());
 

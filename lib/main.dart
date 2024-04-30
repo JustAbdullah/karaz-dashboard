@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:karaz_dashboard/testing.dart';
 import 'package:karaz_dashboard/views/LoginAdmin/login_screen_desktop.dart';
 import 'core/constant/color_primary.dart';
 import 'core/services/appservices.dart';

@@ -206,6 +206,36 @@ class Menu extends StatelessWidget {
                     ),
                     InkWell(
                         onTap: () {
+                          if (controller.typeOfAdmin.value != 2) {
+                            controller.aboutAccessTheAdminMessage.value = true;
+                          } else {
+                            controller.GoToNotificationsServiceManScreen();
+                          }
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 37.w,
+                          height: 35.h,
+                          decoration: BoxDecoration(
+                              color: controller.countTheMenu.value == 14
+                                  ? AppColors.theAppColorBlueWhite
+                                  : Color(0xFF171821),
+                              borderRadius: BorderRadius.circular(3)),
+                          child: Text(
+                            "إشعارات الفنيين",
+                            style: TextStyle(
+                              color: AppColors.whiteColor,
+                              fontFamily: AppTextStyles.Almarai,
+                              fontSize: 18,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        )),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    InkWell(
+                        onTap: () {
                           controller.GoToNoticeScreen();
                         },
                         child: Container(
@@ -329,7 +359,7 @@ class Menu extends StatelessWidget {
                                 : Color(0xFF171821),
                             borderRadius: BorderRadius.circular(3)),
                         child: Text(
-                          "إشعارات-الفني",
+                          "ملاحظات-الفني",
                           style: TextStyle(
                             color: AppColors.whiteColor,
                             fontFamily: AppTextStyles.Almarai,

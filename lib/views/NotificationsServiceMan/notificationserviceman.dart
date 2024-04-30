@@ -14,14 +14,15 @@ import '../../../customWidgets/custom_text.dart';
 import '../../responsive_screen.dart';
 import '../menu/menu.dart';
 
-class Notifications extends StatefulWidget {
-  const Notifications({super.key});
+class NotificationsServiceMan extends StatefulWidget {
+  const NotificationsServiceMan({super.key});
 
   @override
-  State<Notifications> createState() => _NotificationsState();
+  State<NotificationsServiceMan> createState() =>
+      _NotificationsServiceManState();
 }
 
-class _NotificationsState extends State<Notifications> {
+class _NotificationsServiceManState extends State<NotificationsServiceMan> {
   @override
   Widget build(BuildContext context) {
     HomeController homeController = Get.put(HomeController());
@@ -52,8 +53,7 @@ class _NotificationsState extends State<Notifications> {
                                   alignment: Alignment.topCenter,
                                   child: TextCustom(
                                       height: 1.5.h,
-                                      theText:
-                                          "صفحة إرسال الإشعارات للمستخدمين",
+                                      theText: "صفحة إرسال الإشعارات للفنيين",
                                       fontSizeWidth: 7.sp,
                                       fontFamily: AppTextStyles.Almarai,
                                       fontColor: AppColors.blackColor),
@@ -67,7 +67,7 @@ class _NotificationsState extends State<Notifications> {
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 50.w),
                                     child: Text(
-                                      "لطفا قم بإدخال البيانات التالية لإرسال الإشعارات لكافة المستخدميين",
+                                      "لطفا قم بإدخال البيانات التالية لإرسال الإشعارات لكافة الفنيين",
                                       style: TextStyle(
                                           height: 1.5.h,
                                           fontSize: 5.sp,
@@ -190,7 +190,7 @@ class _NotificationsState extends State<Notifications> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        homeController.sendNo(
+                                        homeController.sendServiceMan(
                                           homeController.titleNo.toString(),
                                           homeController.bodyNo.toString(),
                                         );

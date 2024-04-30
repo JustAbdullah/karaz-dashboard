@@ -11,6 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 import 'package:karaz_dashboard/views/AdminView/admin_view.dart';
 import 'package:karaz_dashboard/views/MainTypes/view_main_types.dart';
+import 'package:karaz_dashboard/views/NotificationsServiceMan/notificationserviceman.dart';
 import 'package:karaz_dashboard/views/SubTypes/view_sub_types.dart';
 
 import '../core/services/appservices.dart';
@@ -158,6 +159,14 @@ class HomeController extends GetxController {
     countTheMenu.value = 6;
   }
 
+  GoToNotificationsServiceManScreen() {
+    showMore.value = false;
+    searchingClearWhenMove();
+    Get.to(NotificationsServiceMan());
+
+    countTheMenu.value = 14;
+  }
+
   GoToNoticeScreen() {
     showMore.value = false;
     searchingClearWhenMove();
@@ -214,17 +223,61 @@ class HomeController extends GetxController {
 
   RxBool showMore = false.obs;
 
-///////Send Notifiction................////////////
+///////Send Notifiction ................////////////
 
   String titleNo = "";
   String bodyNo = "";
+  /////////////////Users///////////////////////
   sendNo(String title, String thebody) async {
     var headersList = {
       'Accept': '*/*',
       'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
       'Content-Type': 'application/json',
       'Authorization':
-          'key=AAAAG1L9LFo:APA91bGxzrfDo94mD1i7BmA9QKK_KkXJy1xSnoe--K5Zo5pwrVjtTcQnSxtH4eirPGfGJRz8eA2aFYB1vl_dT5GXFa3zwA8h4fcq0wQAXmre2Tp35Y2wSuiTPBRKx53D2-8U8sgRzXfm'
+          'key=AAAArU8I4-E:APA91bGs5sdAa0TlqWRB9k7WKFlbISZ3mUwuNRHv7fW87aI1QtZW3Pd6Rc3zlW5O0aLB56bl8nK82h7EtaitBcjTQLXDFSFDTmDEK4kPCaKv75mRwi_GVtc812cahbRWyJzmVLoFVfz2'
+    };
+    var url = Uri.parse('https://fcm.googleapis.com/fcm/send');
+
+    var body = {
+      "to": "/topics/all",
+      "notification": {
+        "title": title,
+        "body": thebody,
+        "sound": "default",
+        "image":
+            "https://firebasestorage.googleapis.com/v0/b/jalai-45565.appspot.com/o/logo.png?alt=media&token=4c593126-a27b-4449-bf32-7fd37f1a9b47"
+      },
+      "data": {
+        "message": "Offer!",
+        "image_url":
+            "https://firebasestorage.googleapis.com/v0/b/jalai-45565.appspot.com/o/logo.png?alt=media&token=4c593126-a27b-4449-bf32-7fd37f1a9b47",
+        "image":
+            "https://firebasestorage.googleapis.com/v0/b/jalai-45565.appspot.com/o/logo.png?alt=media&token=4c593126-a27b-4449-bf32-7fd37f1a9b47"
+      }
+    };
+
+    var req = http.Request('POST', url);
+    req.headers.addAll(headersList);
+    req.body = json.encode(body);
+
+    var res = await req.send();
+    final resBody = await res.stream.bytesToString();
+
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      print(resBody);
+    } else {
+      print(res.reasonPhrase);
+    }
+  }
+
+/////////////////ServiceMan///////////////////////
+  sendServiceMan(String title, String thebody) async {
+    var headersList = {
+      'Accept': '*/*',
+      'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
+      'Content-Type': 'application/json',
+      'Authorization':
+          'key=AAAAoyZHY34:APA91bHaaNAwPqBbEcsz1j6oWmTgSshok3wPkYk5gzroZZ4cv7JySv0R97Tkhhk6oZddJ-6r1oUKvD0NWEExxKf0800PusowxOh3CSDtWKEfZWn0UEbtMF171Iy7145aFaJxR4fd2aan'
     };
     var url = Uri.parse('https://fcm.googleapis.com/fcm/send');
 
@@ -885,11 +938,11 @@ class HomeController extends GetxController {
   ///////////////////////////////////////////......Request Services Man ............................../////////////////////
 
   String nameRquestSeriveMan = "غير معروف";
-  String imaRquestSeriveMan = "";
-  String typeOfWorkRquestSeriveMan = "آلة الغسيل";
-  String phoneRquestSeriveMan = "+777";
-  String idRquestSeriveMan = "79797799";
-  String tokenServiceMan = "88";
+  String imaRquestSeriveMan = "غير معروف";
+  String typeOfWorkRquestSeriveMan = "غير معروف";
+  String phoneRquestSeriveMan = "غير معروف";
+  String idRquestSeriveMan = "غير معروف";
+  String tokenServiceMan = "غير معروف";
 
   sendNoToServiceManAboutRquest(
       String title, String thebody, String token) async {
@@ -898,7 +951,7 @@ class HomeController extends GetxController {
       'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
       'Content-Type': 'application/json',
       'Authorization':
-          'key=AAAAG1L9LFo:APA91bGxzrfDo94mD1i7BmA9QKK_KkXJy1xSnoe--K5Zo5pwrVjtTcQnSxtH4eirPGfGJRz8eA2aFYB1vl_dT5GXFa3zwA8h4fcq0wQAXmre2Tp35Y2wSuiTPBRKx53D2-8U8sgRzXfm'
+          'key=AAAAoyZHY34:APA91bHaaNAwPqBbEcsz1j6oWmTgSshok3wPkYk5gzroZZ4cv7JySv0R97Tkhhk6oZddJ-6r1oUKvD0NWEExxKf0800PusowxOh3CSDtWKEfZWn0UEbtMF171Iy7145aFaJxR4fd2aan'
     };
     var url = Uri.parse('https://fcm.googleapis.com/fcm/send');
 
